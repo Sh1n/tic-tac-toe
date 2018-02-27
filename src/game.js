@@ -13,7 +13,7 @@ var TicTacToeGame = angular
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'gameGridCell.html',
+      template: require('./gameGridCell.html'),
       scope: {
         content: '=?'
       }
@@ -23,7 +23,7 @@ var TicTacToeGame = angular
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'gameGrid.html',
+      template: require('./gameGrid.html'),
       scope: {
         size: '=?'
       },
