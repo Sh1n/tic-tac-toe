@@ -1,0 +1,31 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+
+.game-grid-container{
+    border: 3px solid black;
+    width: fit-content;
+    margin: auto;
+}
+.game-grid-row{
+    height: 100px;
+    width: fit-content;
+}
+.game-grid-cell{
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+    width: 100px;
+    height: 100px;
+    float: left;
+    line-height: 100px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+}
+.game-grid-cell.active{
+    background-color: darkseagreen;
+}
+.game-grid-container .game-grid-row .game-grid-cell:last-child{
+    border-right: 0px;
+}
+.game-grid-container .game-grid-row:last-child .game-grid-cell{
+    border-bottom: 0px;
+}

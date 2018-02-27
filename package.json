@@ -1,0 +1,25 @@
+{
+  "name": "tic-tac-tow-ajs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "neutrino start --use @neutrinojs/web",
+    "build": "neutrino build --use @neutrinojs/web",
+    "lint": "neutrino lint --use @neutrinojs/web",
+    "test": "neutrino test --use @neutrinojs/web"
+  },
+  "devDependencies": {
+    "@neutrinojs/jest": "^8.1.2",
+    "@neutrinojs/standardjs": "^8.1.2",
+    "@neutrinojs/web": "^8.1.2",
+    "neutrino": "^8.1.2"
+  },
+  "dependencies": {
+    "@neutrinojs/html-loader": "^8.1.2",
+    "@neutrinojs/style-loader": "^8.1.2",
+    "angular": "^1.6.9",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6"
+  }
+}

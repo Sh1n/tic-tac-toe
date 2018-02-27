@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="game-container">
+            <div class="game-grid-container">
+                <div
+                    class="game-grid-row" 
+                    ng-repeat="row in [] | range:size">
+                    <game-grid-cell 
+                        ng-repeat="col in [] | range:size" 
+                        content="dots[row][col]"
+                        ng-class="classes[row][col]"
+                        ng-click="updateCell(row, col)"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 text-center text-uppercase">
+        <h2>Current Player : {{currentFlag}}</h2>
+        <h1 ng-show="result">{{result}}</h1>
+
+        <button class="btn btn-lg btn-primary" ng-show="result" ng-click="restart()">Restart</button>
+    </div>
+</div>
