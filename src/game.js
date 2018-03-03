@@ -122,42 +122,27 @@ var TicTacToeGame = angular
           }
         }
 
-        var diagCheck = function (row, col, flag) {
-          for (var diagIndex = 0; diagIndex < $scope.size; diagIndex++) {
-            if (!(diagIndex in $scope.dots) || !(diagIndex in $scope.dots[diagIndex])) {
-              break
-            }
-            if ($scope.dots[diagIndex][diagIndex] !== flag) {
-              break
-            }
-            if ([diagIndex] === $scope.size - 1) {
-              return {
-                result: true,
-                type: 'win',
-                diag: 1,
-                flag: flag
-              }
-            }
-          }
-          return {
-            result: false
-          }
+        var computeDiagonalIndex = function (colIndex, direction) {
+          return direction === -1 ? (($scope.size - 1) - colIndex) : colIndex
         }
 
-        var counterDiagCheck = function (row, col, flag) {
+        var diagCheck = function (row, col, flag, direction) {
           for (var diagIndex = 0; diagIndex < $scope.size; diagIndex++) {
-            var colIndex = ($scope.size - 1) - diagIndex
-            if (!(diagIndex in $scope.dots) || !(colIndex in $scope.dots[diagIndex])) {
+            var colIndex = computeDiagonalIndex(diagIndex, direction)
+            if (!(diagIndex in $scope.dots)) {
+              break
+            }
+            if (!(colIndex in $scope.dots[diagIndex])) {
               break
             }
             if ($scope.dots[diagIndex][colIndex] !== flag) {
               break
             }
-            if ([diagIndex] === $scope.size - 1) {
+            if (diagIndex === $scope.size - 1) {
               return {
                 result: true,
                 type: 'win',
-                diag: -1,
+                diag: direction,
                 flag: flag
               }
             }
@@ -191,19 +176,19 @@ var TicTacToeGame = angular
             manageEndGame(checkResult)
           }
           if (row === col) {
-            checkResult = diagCheck(row, col, flag)
+            checkResult = diagCheck(row, col, flag, 1)
             if (checkResult.result) {
               manageEndGame(checkResult)
             }
           }
           if (row + col === $scope.size - 1) {
-            checkResult = counterDiagCheck(row, col, flag)
+            checkResult = diagCheck(row, col, flag, -1)
             if (checkResult.result) {
               manageEndGame(checkResult)
             }
           }
 
-          if (moves === (Math.pow($scope.size, 2) - 1)) {
+          if (moves === (Math.pow($scope.size, 2))) {
             manageEndGame({
               result: true,
               type: 'draw'
@@ -216,6 +201,7 @@ var TicTacToeGame = angular
             return
           }
           moves++
+          $scope.moves = moves
           if (!(row in $scope.dots)) {
             $scope.dots[row] = {}
           }
